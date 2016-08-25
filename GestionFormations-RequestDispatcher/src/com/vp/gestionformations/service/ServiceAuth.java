@@ -14,7 +14,7 @@ public class ServiceAuth {
 		
 		User usr = UserDAO.lireParLogin(login);
 		
-		if (usr == null){
+		if (usr.getLogin() == null){
 			return false;
 		}
 		

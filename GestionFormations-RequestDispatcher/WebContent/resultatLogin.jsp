@@ -16,5 +16,7 @@
 		<li>Login: <%=u.getLogin()%>
 		<li>Mot de Passe: <%=u.getPwd()%>
 	</ul>
+	<br>
+	<a href="">Retourner à l'acceuil</a>
 </body>
 </html>
