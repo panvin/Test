@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.vp.gestionformations.service.ServiceAuth;
+
 /**
  * Servlet implementation class MaServlet
  */
@@ -45,21 +47,23 @@ public class MaServlet extends HttpServlet {
 
 		String login = request.getParameter("loginuser");
 		String pwd = request.getParameter("mdpuser");
+		
 
 		// Etape 2: Soumettre les parametres de la requete à la couche service
+		boolean authOK;
+		ServiceAuth serviceAuthentification= new ServiceAuth();
+		
+		authOK = serviceAuthentification.estValide(login, pwd);
 
 		// Etape 3: Repond à l'utilisateur
-
 		RequestDispatcher dispatcher;
 
-		if (("manga".equalsIgnoreCase(login)) && ("aimejava".equalsIgnoreCase(pwd))) {
+		if ( authOK == true) {
 			dispatcher = request.getRequestDispatcher("Acceuil.html");
 		} else {
 			dispatcher = request.getRequestDispatcher("login.html");
 		}
-
 		dispatcher.forward(request, response);
-
 	}
 
 }
