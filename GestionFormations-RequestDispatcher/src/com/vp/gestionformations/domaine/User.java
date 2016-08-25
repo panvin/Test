@@ -22,8 +22,7 @@ public class User {
 	}
 	
 	public User() {
-		this.login ="";
-		this.pwd = "";
+		super();
 	}
 	
 	

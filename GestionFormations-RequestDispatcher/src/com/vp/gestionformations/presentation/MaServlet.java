@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.vp.gestionformations.domaine.User;
 import com.vp.gestionformations.service.ServiceAuth;
 
 /**
@@ -50,20 +52,25 @@ public class MaServlet extends HttpServlet {
 		
 
 		// Etape 2: Soumettre les parametres de la requete à la couche service
+		User user = new User(login, pwd);
+		
+		HttpSession maSession = request.getSession();
+		maSession.setAttribute("utilisateur", user);
+		
 		boolean authOK;
 		ServiceAuth serviceAuthentification= new ServiceAuth();
-		
 		authOK = serviceAuthentification.estValide(login, pwd);
 
 		// Etape 3: Repond à l'utilisateur
 		RequestDispatcher dispatcher;
 
 		if ( authOK == true) {
-			dispatcher = request.getRequestDispatcher("Acceuil.jsp");
+			dispatcher =  request.getRequestDispatcher("resultatLogin.jsp");
 		} else {
 			dispatcher = request.getRequestDispatcher("login.jsp");
 		}
 		dispatcher.forward(request, response);
+		
 	}
 
 }
