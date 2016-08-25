@@ -21,6 +21,11 @@ public class User {
 		this.pwd = ""; 
 	}
 	
+	public User() {
+		this.login ="";
+		this.pwd = "";
+	}
+	
 	
 	/**
 	 * @return the login

@@ -1,4 +1,4 @@
-package com.vp.gestionformations;
+package com.vp.gestionformations.presentation;
 
 import java.io.IOException;
 
@@ -59,9 +59,9 @@ public class MaServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 
 		if ( authOK == true) {
-			dispatcher = request.getRequestDispatcher("Acceuil.html");
+			dispatcher = request.getRequestDispatcher("Acceuil.jsp");
 		} else {
-			dispatcher = request.getRequestDispatcher("login.html");
+			dispatcher = request.getRequestDispatcher("login.jsp");
 		}
 		dispatcher.forward(request, response);
 	}

@@ -19,7 +19,7 @@ public class UserDAO {
 	 */
 	public static void creer(String loginUser, String pwd) {
 		// INfomration d'accès à la base de données
-		String url = "jdbc:mysql://localhost/formation/user";
+		String url = "jdbc:mysql://localhost/formation";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
@@ -54,7 +54,7 @@ public class UserDAO {
 
 	public static void creer(User user) {
 		// INfomration d'accès à la base de données
-		String url = "jdbc:mysql://localhost/javadb";
+		String url = "jdbc:mysql://localhost/formation";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
@@ -92,7 +92,7 @@ public class UserDAO {
 	 */
 	public static Collection<User> lireTous() {
 		// INformation d'acces à la base de donnees
-		String url = "jdbc:mysql://localhost/javadb";
+		String url = "jdbc:mysql://localhost/formation";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
@@ -108,7 +108,7 @@ public class UserDAO {
 			cn = DriverManager.getConnection(url, login, passwd);
 			// Etape 3 : Creation d'un statement
 			st = cn.createStatement();
-			String sql = "SELECT * FROM employe";
+			String sql = "SELECT * FROM user";
 			// Etape 4: Execution requête
 			rs = st.executeQuery(sql);
 			// Etape 5 : Parcours de resultset
@@ -136,13 +136,13 @@ public class UserDAO {
 
 	public static User lireParLogin(String loginUser) {
 		// INformation d'acces à la base de donnees
-		String url = "jdbc:mysql://localhost/javadb";
+		String url = "jdbc:mysql://localhost/formation";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		User usr;
+		User usr = new User();
 
 		try {
 			// Etape 1: chargement du driver
@@ -151,11 +151,14 @@ public class UserDAO {
 			cn = DriverManager.getConnection(url, login, passwd);
 			// Etape 3 : Creation d'un statement
 			st = cn.createStatement();
-			String sql = "SELECT * FROM employe WHERE login =" + loginUser;
+			String sql = "SELECT * FROM user WHERE login ='" + loginUser + "';";
 			// Etape 4: Execution requête
 			rs = st.executeQuery(sql);
 			// Etape 5 : Parcours de resultset
-			usr = new User(rs.getString("login"), rs.getString("pwd"));
+			while(rs.next()){
+			usr.setLogin(rs.getString("login"));
+			usr.setPwd(rs.getString("pwd"));
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -180,7 +183,7 @@ public class UserDAO {
 	 */
 	public static void supprimer(String loginUser) {
 		// INformation d'acces à la base de donnees
-		String url = "jdbc:mysql://localhost/javadb";
+		String url = "jdbc:mysql://localhost/formation";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
@@ -193,7 +196,7 @@ public class UserDAO {
 			cn = DriverManager.getConnection(url, login, passwd);
 			// Etape 3 : Creation d'un statement
 			st = cn.createStatement();
-			String sql = "DELETE FROM employe WHERE login =" + loginUser + ";";
+			String sql = "DELETE FROM user WHERE login =" + loginUser + ";";
 			// Etape 4: Execution requête
 			st.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -214,7 +217,7 @@ public class UserDAO {
 
 	public static void update(String loginUser, String newPassword) {
 		// INformation d'acces à la base de donnees
-		String url = "jdbc:mysql://localhost/javadb";
+		String url = "jdbc:mysql://localhost/formation";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
@@ -227,7 +230,7 @@ public class UserDAO {
 			cn = DriverManager.getConnection(url, login, passwd);
 			// Etape 3 : Creation d'un statement
 			st = cn.createStatement();
-			String sql = "UPDATE employe SET pwd = '" + newPassword + "' WHERE login ='" + login + "';";
+			String sql = "UPDATE user SET pwd = '" + newPassword + "' WHERE login ='" + login + "';";
 			// Etape 4: Execution requête
 			st.executeUpdate(sql);
 		} catch (SQLException e) {
