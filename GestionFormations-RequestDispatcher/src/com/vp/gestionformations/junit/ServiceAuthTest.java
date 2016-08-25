@@ -1,7 +1,5 @@
 package com.vp.gestionformations.junit;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 
