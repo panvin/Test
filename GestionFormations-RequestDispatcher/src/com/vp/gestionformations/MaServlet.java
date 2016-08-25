@@ -56,7 +56,7 @@ public class MaServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 		
 
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }
