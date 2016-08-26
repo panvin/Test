@@ -12,4 +12,18 @@
     <welcome-file>login.html</welcome-file>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
+  
+<!-- Gestion Erreur http 404 -->
+<error-page>
+	<error-code>404</error-code>
+	<location>/erreur.jsp</location>
+</error-page>
+
+<!-- Gestion Erreur applicative -->
+<error-page>
+	<exception-type>java.lang.Exception</exception-type>
+	<location>/erreur.jsp</location>
+</error-page>
+
+
 </web-app>

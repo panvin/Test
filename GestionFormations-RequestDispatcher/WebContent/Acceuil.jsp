@@ -9,7 +9,7 @@
 <body>
 	<center>
 		<h2>Bonjour et bienvenue sur votre page!!</h2>
-		<a href="login.jsp">Connectez-vous</a><br><br><a href="subscribe.jsp">Creer un compte</a>
+		<a href="login.jsp">Connectez-vous</a><br><br><a href="subscribe.jsp">Creer un compte</a><a href="logi.jsp">Vers une erreur 404</a>
 	</center>
 </body>
 </html>
